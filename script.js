@@ -16,15 +16,48 @@ numberButtons.forEach((button) => {
   });
 
 operatorButtons.forEach((button) => {
-    button.addEventListener('click', () => appendNumber(button.textContent));
+    button.addEventListener('click', () => setOperator(button.textContent));
   });
 
+equalButton.addEventListener('click', calculateResult);
 function appendNumber(number){
     display.textContent += number;
     };
 
+
+function setOperator(selectedOperator){
+    if(operator !== null) {
+        calculateResult();
+    }
+    firstNumber = display.textContent
+    console.log('first num :' + firstNumber);
+    operator = selectedOperator;
+    display.textContent = '';
+}
+
+function calculateResult(){
+    if(firstNumber === ''|| operator === null || display.textContent === ''){
+        return;
+    }
+    secondNumber = display.textContent;
+    console.log('second num :' + secondNumber);
+    const result = operate(firstNumber, operator, secondNumber);
+    display.textContent = result;
+    console.log('result: ' + result);
+    resetCalculation();
+}
+
+function resetCalculation() {
+    firstNumber = '';
+    secondNumber = '';
+    operator = null;
+  }
+
 //OPERATE FUNCTION
 function operate(number1, operator, number2){
+    number1 = Number(number1);
+    number2 = Number(number2);
+
     if(operator === "+"){
         return add(number1,number2);
     }else if(operator === "-"){
