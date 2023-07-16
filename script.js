@@ -5,9 +5,9 @@ let operator = null;
 
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
+const powerButton = document.getElementById('button-power');
 /*<button id="button-clear" class="operate-buttons">cl</button>
-<button id="button-backspace" class="operate-buttons">bc</button>
-<button id="button-power" class="operate-buttons">^2</button>*/
+<button id="button-backspace" class="operate-buttons">bc</button>*/
 const display = document.getElementById('display');
 const equalButton = document.getElementById('button-equal');
 
@@ -18,8 +18,9 @@ numberButtons.forEach((button) => {
 operatorButtons.forEach((button) => {
     button.addEventListener('click', () => setOperator(button.textContent));
   });
-
+powerButton.addEventListener('click', calculatePower);
 equalButton.addEventListener('click', calculateResult);
+
 function appendNumber(number){
     display.textContent += number;
     };
@@ -52,6 +53,12 @@ function resetCalculation() {
     secondNumber = '';
     operator = null;
   }
+
+function calculatePower() {
+    const number = parseFloat(display.textContent);
+    const result = Math.pow(number, 2);
+    display.textContent = result;
+}
 
 //OPERATE FUNCTION
 function operate(number1, operator, number2){
