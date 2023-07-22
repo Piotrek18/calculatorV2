@@ -6,8 +6,8 @@ let operator = null;
 const numberButtons = document.querySelectorAll('[data-number]');
 const operatorButtons = document.querySelectorAll('[data-operator]');
 const powerButton = document.getElementById('button-power');
-/*<button id="button-clear" class="operate-buttons">cl</button>
-<button id="button-backspace" class="operate-buttons">bc</button>*/
+const clearButton = document.getElementById('button-clear');
+const backspaceButton = document.getElementById('button-backspace');
 const display = document.getElementById('display');
 const equalButton = document.getElementById('button-equal');
 
@@ -20,11 +20,23 @@ operatorButtons.forEach((button) => {
   });
 powerButton.addEventListener('click', calculatePower);
 equalButton.addEventListener('click', calculateResult);
+backspaceButton.addEventListener('click', backspace);
+clearButton.addEventListener('click', clearDisplay);
 
 function appendNumber(number){
     display.textContent += number;
     };
 
+function backspace() {
+    display.textContent = display.textContent.slice(0, -1);
+}
+
+function clearDisplay() {
+    display.textContent = '';
+    firstNumber = '';
+    secondNumber = '';
+    selectedOperator = '';
+}
 
 function setOperator(selectedOperator){
     if(operator !== null) {
