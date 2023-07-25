@@ -54,7 +54,8 @@ function calculateResult(){
     }
     secondNumber = display.textContent;
     console.log('second num :' + secondNumber);
-    const result = operate(firstNumber, operator, secondNumber);
+    //const result = operate(firstNumber, operator, secondNumber);
+    const result = roundResult(operate(firstNumber, operator, secondNumber));
     display.textContent = result;
     console.log('result: ' + result);
     resetCalculation();
@@ -72,6 +73,10 @@ function calculatePower() {
     display.textContent = result;
 }
 
+function roundResult(number) {
+    return Math.round(number * 1000) / 1000;
+  };
+  
 //OPERATE FUNCTION
 function operate(number1, operator, number2){
     number1 = Number(number1);
